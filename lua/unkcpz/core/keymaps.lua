@@ -26,3 +26,6 @@ keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" }) 
 keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" }) --  move current buffer to new tab
 
 keymap.set("n", "<leader>cr", "<cmd>RustLsp runnables<CR>", { desc = "RustLsp runnables" }) -- run rust
+
+-- Jump out from terminal mode
+keymap.set("t", "<Esc><Esc>", [[<C-\><C-n>]], { desc = "Jump out from the terminal mode " })
