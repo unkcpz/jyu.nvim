@@ -9,6 +9,8 @@ return {
     vim.g.loaded_netrwPlugin = 1
 
     nvimtree.setup({
+      update_cwd = true,
+      respect_buf_cwd = true,
       view = {
         width = 35,
         relativenumber = true,
