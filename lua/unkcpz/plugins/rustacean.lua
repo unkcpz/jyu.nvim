@@ -9,5 +9,18 @@ return {
 
     keymap.set("n", "<leader>crr", "<cmd>RustLsp runnables<CR>", { desc = "RustLsp runnables" }) -- run rust
     keymap.set("n", "<leader>crf", "<cmd>RustFmt<CR>", { desc = "Rust formatting" }) -- run rust formatting
-  end
+  end,
+  opts = {
+    server = {
+      default_settings = {
+        ["rust-analyzer"] = {
+          checkOnSave = {
+            allFeatures = true,
+            command = "clippy",
+            extraArgs = { "--no-deps" },
+          },
+        },
+      },
+    },
+  },
 }
