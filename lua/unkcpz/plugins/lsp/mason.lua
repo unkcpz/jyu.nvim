@@ -29,8 +29,5 @@ return {
         "pyright",
       },
     })
-    mason_lspconfig.setup_handlers {
-      ['rust_analyzer'] = function() end,
-    }
   end,
 }

@@ -1,26 +1,60 @@
+-- get from https://github.com/appelgriebsch/LazyVim/blob/main/lua/lazyvim/plugins/extras/lang/rust.lua
 return {
   'mrcjkb/rustaceanvim',
   version = '^4', -- Recommended
-  lazy = false, -- This plugin is already lazy
   ft = { "rust" },
-  config = function()
-    -- set keymaps
-    local keymap = vim.keymap -- for conciseness
-
-    keymap.set("n", "<leader>crr", "<cmd>RustLsp runnables<CR>", { desc = "RustLsp runnables" }) -- run rust
-    keymap.set("n", "<leader>crf", "<cmd>RustFmt<CR>", { desc = "Rust formatting" }) -- run rust formatting
-  end,
   opts = {
     server = {
+      on_attach = function(_, bufnr)
+        vim.keymap.set("n", "<leader>cR", function()
+          vim.cmd.RustLsp("codeAction")
+        end, { desc = "Code Action", buffer = bufnr })
+        vim.keymap.set("n", "<leader>dR", function()
+          vim.cmd.RustLsp("debuggables")
+        end, { desc = "Rust Debuggables", buffer = bufnr })
+        vim.keymap.set("n", "<leader>crr", function()
+          vim.cmd.RustLsp("runnables")
+        end, { desc = "Rust Runnables", buffer = bufnr })
+        vim.keymap.set("n", "<leader>crf", function()
+          vim.cmd("RustFmt")
+        end, { desc = "Rust formatting", buffer = bufnr })
+      end,
       default_settings = {
+        -- rust-analyzer language server configuration
         ["rust-analyzer"] = {
+          cargo = {
+            allFeatures = true,
+            loadOutDirsFromCheck = true,
+            buildScripts = {
+              enable = true,
+            },
+          },
+          -- Add clippy lints for Rust.
           checkOnSave = {
             allFeatures = true,
             command = "clippy",
             extraArgs = { "--no-deps" },
           },
+          procMacro = {
+            enable = true,
+            ignored = {
+              ["async-trait"] = { "async_trait" },
+              ["napi-derive"] = { "napi" },
+              ["async-recursion"] = { "async_recursion" },
+            },
+          },
         },
       },
     },
   },
+  config = function(_, opts)
+    vim.g.rustaceanvim = vim.tbl_deep_extend("keep", vim.g.rustaceanvim or {}, opts or {})
+    if vim.fn.executable("rust-analyzer") == 0 then
+      LazyVim = require("lazyvim.util")
+      LazyVim.error(
+        "**rust-analyzer** not found in PATH, please install it.\nhttps://rust-analyzer.github.io/",
+        { title = "rustaceanvim" }
+      )
+    end
+  end,
 }
