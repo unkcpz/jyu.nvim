@@ -29,3 +29,4 @@ keymap.set("n", "<leader>cr", "<cmd>RustLsp runnables<CR>", { desc = "RustLsp ru
 
 -- Jump out from terminal mode
 keymap.set("t", "<Esc><Esc>", [[<C-\><C-n>]], { desc = "Jump out from the terminal mode " })
+

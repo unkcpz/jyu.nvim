@@ -26,7 +26,8 @@ return {
       ensure_installed = {
         "html",
         "lua_ls",
-        "pyright",
+        "ruff",
+        "ruff_lsp",
       },
     })
   end,
