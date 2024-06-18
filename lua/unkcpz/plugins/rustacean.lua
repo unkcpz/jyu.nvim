@@ -5,6 +5,11 @@ return {
   ft = { "rust" },
   opts = {
     server = {
+      tools = {
+          float_win_config = {
+              border = 'rounded'
+          }
+      },
       on_attach = function(_, bufnr)
         vim.keymap.set("n", "<leader>cR", function()
           vim.cmd.RustLsp("codeAction")
