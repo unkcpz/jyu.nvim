@@ -1,10 +1,7 @@
 return {
   "kdheepak/juliaFormatter.vim",
   lazy = false,
-  -- load when detecting Julia-specific project files
-  cond = function()
-    return vim.fn.glob("Project.toml") ~= ""
-  end,
+  ft = { 'julia' },
   config = function()
     vim.g.juliaFormatter_options = { style = "blue" }
 
