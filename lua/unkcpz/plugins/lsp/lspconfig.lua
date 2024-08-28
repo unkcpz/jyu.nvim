@@ -39,6 +39,22 @@ return {
 
     local keymap = vim.keymap -- for conciseness
 
+    -- julials
+    lspconfig.julials.setup({
+      cmd = { "julia", "--startup-file=no", "--history-file=no", "-e", [[
+        using LanguageServer;
+        using Pkg;
+        import StaticLint;
+        import SymbolServer;
+        env_path = dirname(Pkg.Types.Context().env.project_file);
+        server = LanguageServer.LanguageServerInstance(stdin, stdout, env_path, "");
+        server.runlinter = true;
+        run(server);
+      ]] },
+      filetypes = {"julia"},
+      root_dir = lspconfig.util.root_pattern(".git", "Project.toml"),
+    })
+
     vim.api.nvim_create_autocmd("LspAttach", {
       group = vim.api.nvim_create_augroup("UserLspConfig", {}),
       callback = function(ev)
