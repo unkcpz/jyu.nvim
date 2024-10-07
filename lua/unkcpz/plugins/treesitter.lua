@@ -55,9 +55,8 @@ return {
         },
       },
       vim.api.nvim_create_autocmd("FileType", {
-        pattern = "julia",
+        pattern = {"lua", "julia"},
         callback = function()
-          -- For example, set Python to use 4 spaces for indentation
           vim.bo.shiftwidth = 4
           vim.bo.tabstop = 4
           vim.bo.expandtab = true  -- Replace tabs with spaces
