@@ -17,10 +17,10 @@ return {
         vim.keymap.set("n", "<leader>dR", function()
           vim.cmd.RustLsp("debuggables")
         end, { desc = "Rust Debuggables", buffer = bufnr })
-        vim.keymap.set("n", "<leader>crr", function()
+        vim.keymap.set("n", "<leader>rr", function()
           vim.cmd.RustLsp("runnables")
         end, { desc = "Rust Runnables", buffer = bufnr })
-        vim.keymap.set("n", "<leader>crf", function()
+        vim.keymap.set("n", "<leader>rf", function()
           vim.cmd("RustFmt")
         end, { desc = "Rust formatting", buffer = bufnr })
       end,
