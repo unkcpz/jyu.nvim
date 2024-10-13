@@ -5,4 +5,3 @@ return {
         keymap.set('n', '<leader>lf', ':lua require("stylua").format()<cr>', { noremap = true, silent = true })
     end,
 }
-
