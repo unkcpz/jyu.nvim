@@ -68,9 +68,17 @@ return {
                 -- See `:help vim.lsp.*` for documentation on any of the below functions
                 local opts = { buffer = ev.buf, silent = true }
 
+                local toggleInlay = function()
+                    local current_value = vim.lsp.inlay_hint.is_enabled { bufnr = 0 }
+                    vim.lsp.inlay_hint.enable(not current_value, { bufnr = 0 })
+                end
+
                 -- set keybinds
                 opts.desc = 'Show LSP references'
                 keymap.set('n', 'gR', '<cmd>Telescope lsp_references<CR>', opts) -- show definition, references
+
+                opts.desc = 'Toggle Inlay Hint'
+                keymap.set('n', '<leader>ri', toggleInlay, opts) -- toggle inlay hint
 
                 opts.desc = 'Go to declaration'
                 keymap.set('n', 'gD', vim.lsp.buf.declaration, opts) -- go to declaration
