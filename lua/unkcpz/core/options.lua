@@ -43,5 +43,8 @@ opt.splitbelow = true -- split horizontal window to the bottom
 -- turn off swapfile
 opt.swapfile = false
 
--- 
+-- colorcolumn 90 chars
 opt.colorcolumn = "90"
+
+-- cursor scroll limit
+opt.scrolloff = 8
