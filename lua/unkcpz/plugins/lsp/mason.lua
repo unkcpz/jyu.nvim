@@ -29,6 +29,7 @@ return {
                 'ruff',
                 'ruff_lsp',
                 'julials',
+                'pyright',
             },
         }
     end,
