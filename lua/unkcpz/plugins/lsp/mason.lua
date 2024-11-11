@@ -27,7 +27,6 @@ return {
                 'html',
                 'lua_ls',
                 'ruff',
-                'ruff_lsp',
                 'julials',
                 'basepyright',
             },
