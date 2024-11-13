@@ -20,9 +20,10 @@ return {
                 vim.keymap.set('n', '<leader>rr', function()
                     vim.cmd.RustLsp 'runnables'
                 end, { desc = 'Rust Runnables', buffer = bufnr })
-                vim.keymap.set('n', '<leader>rf', function()
-                    vim.cmd 'RustFmt'
-                end, { desc = 'Rust formatting', buffer = bufnr })
+                -- Use rustfmt set in generic-formatter.lua
+                -- vim.keymap.set('n', '<leader>rf', function()
+                --     vim.cmd 'RustFmt'
+                -- end, { desc = 'Rust formatting', buffer = bufnr })
             end,
             default_settings = {
                 -- rust-analyzer language server configuration

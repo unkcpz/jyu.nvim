@@ -28,7 +28,7 @@ return {
                 'lua_ls',
                 'ruff',
                 'julials',
-                'basepyright',
+                'basedpyright',
             },
         }
     end,

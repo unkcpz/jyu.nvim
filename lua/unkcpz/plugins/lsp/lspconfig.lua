@@ -98,8 +98,9 @@ return {
                 opts.desc = 'Smart rename'
                 keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts) -- smart rename
 
-                opts.desc = 'Buf formatter'
-                keymap.set('n', '<leader>pf', vim.lsp.buf.format, opts) -- smart rename
+                -- replaced by conform plugin set in generic-formamater.lua
+                -- opts.desc = 'Buf formatter'
+                -- keymap.set('n', '<leader>pf', vim.lsp.buf.format, opts) -- smart rename
 
                 opts.desc = 'Show buffer diagnostics'
                 keymap.set('n', '<leader>D', '<cmd>Telescope diagnostics bufnr=0<CR>', opts) -- show  diagnostics for file
