@@ -29,23 +29,23 @@ keymap.set('n', '<leader>tf', '<cmd>tabnew %<CR>', { desc = 'Open current buffer
 keymap.set('t', '<Esc><Esc>', [[<C-\><C-n>]], { desc = 'Jump out from the terminal mode ' })
 
 -- quickfix
-keymap.set('n', '<leader>cn', '<cmd>cnext<CR>', {desc = 'next in quickfix list'})
-keymap.set('n', '<leader>cp', '<cmd>cprevious<CR>', {desc = 'previous in quickfix list'})
+keymap.set('n', '<leader>cn', '<cmd>cnext<CR>', { desc = 'next in quickfix list' })
+keymap.set('n', '<leader>cp', '<cmd>cprevious<CR>', { desc = 'previous in quickfix list' })
 
 -- Function to toggle the Quickfix list
 local function toggle_quickfix()
-  local qf_exists = false
-  for _, win in pairs(vim.fn.getwininfo()) do
-    if win.quickfix == 1 then
-      qf_exists = true
-      break
+    local qf_exists = false
+    for _, win in pairs(vim.fn.getwininfo()) do
+        if win.quickfix == 1 then
+            qf_exists = true
+            break
+        end
     end
-  end
-  if qf_exists then
-    vim.cmd("cclose")
-  else
-    vim.cmd("botright copen")
-  end
+    if qf_exists then
+        vim.cmd 'cclose'
+    else
+        vim.cmd 'botright copen'
+    end
 end
 
 -- Map the toggle function to <leader>ct
