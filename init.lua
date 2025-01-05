@@ -1,3 +1,3 @@
-require("unkcpz.core")
-require("unkcpz.lazy")
+require("custom.core")
+require("custom.lazy")
 
