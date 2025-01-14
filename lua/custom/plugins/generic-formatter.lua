@@ -2,7 +2,17 @@ return {
     'stevearc/conform.nvim',
     opts = {},
     config = function()
+        -- Define a custom formatter called "rustywind"
+        local formatters = {
+            rustywind = {
+                command = 'rustywind',
+                args = { '--stdin', '--quiet' },
+                stdin = true,
+            },
+        }
+
         require('conform').setup {
+            formatters = formatters,
             formatters_by_ft = {
                 lua = { 'stylua' },
                 -- Conform will run multiple formatters sequentially
@@ -17,6 +27,7 @@ return {
                 rust = { 'rustfmt', lsp_format = 'fallback' },
                 -- Use "yamlfmt" as primary
                 yaml = { 'yamlfmt' },
+                html = { 'htmlbeautifier' },
             },
         }
 

@@ -30,6 +30,7 @@ The config requires:
 - `stylua`
 - `fd`
 - `rust-analyzer` 
+- `htmlbeautifier` (formatter for html, need rubygems to install)
 
 For `ruff` and `ruff-lsp` to work, need python `venv`.
 For `html` need npm (use node.js package version manager `nvm` to install it). ICF: `nvm.fish`.

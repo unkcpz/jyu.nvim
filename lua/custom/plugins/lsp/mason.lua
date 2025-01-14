@@ -25,11 +25,13 @@ return {
             -- list of servers for mason to install
             ensure_installed = {
                 'html',
+                'htmx',
                 'lua_ls',
                 'ruff',
                 'julials',
                 'basedpyright',
             },
+            automatic_installation = true,
         }
     end,
 }
