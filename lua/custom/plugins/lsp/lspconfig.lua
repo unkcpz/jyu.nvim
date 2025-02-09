@@ -127,11 +127,64 @@ return {
 
         -- Change the Diagnostic symbols in the sign column (gutter)
         -- (not in youtube nvim video)
-        local signs = { Error = ' ', Warn = ' ', Hint = '󰠠 ', Info = ' ' }
+        local signs = { Error = ' ', Warn = '! ', Hint = '> ', Info = 'i ' }
         for type, icon in pairs(signs) do
             local hl = 'DiagnosticSign' .. type
             vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = '' })
         end
+
+        vim.diagnostic.config {
+            virtual_text = false, -- Disable inline diagnostic messages
+            signs = false, -- Disable default sign handling
+            underline = true,
+            update_in_insert = false,
+        }
+
+        local virtual_text_enabled = false -- Start with virtual text disabled
+
+        function ToggleVirtualText()
+            virtual_text_enabled = not virtual_text_enabled
+            vim.diagnostic.config {
+                virtual_text = virtual_text_enabled,
+            }
+            print('Virtual Text: ' .. (virtual_text_enabled and 'Enabled' or 'Disabled'))
+        end
+
+        -- Keybinding to toggle virtual text (adjust as needed)
+        vim.keymap.set('n', '<leader>dt', ToggleVirtualText, { noremap = true, silent = true })
+
+        -- Custom function to force Error to take precedence
+        vim.api.nvim_create_autocmd('DiagnosticChanged', {
+            callback = function()
+                local ns = vim.api.nvim_create_namespace 'custom_diagnostic_signs'
+                vim.api.nvim_buf_clear_namespace(0, ns, 0, -1)
+                local diagnostics = vim.diagnostic.get(0)
+
+                -- Table to store the highest priority diagnostic for each line
+                local line_signs = {}
+
+                for _, diag in ipairs(diagnostics) do
+                    local line = diag.lnum
+                    local severity = diag.severity
+
+                    -- Assign the highest priority diagnostic (Error > Warn > Hint > Info)
+                    if not line_signs[line] or severity < line_signs[line].severity then
+                        line_signs[line] = { severity = severity, type = diag.severity }
+                    end
+                end
+
+                -- Apply signs based on priority
+                for line, data in pairs(line_signs) do
+                    local sign_type = ({ 'Error', 'Warn', 'Hint', 'Info' })[data.type]
+                    local sign_icon = signs[sign_type]
+
+                    vim.api.nvim_buf_set_extmark(0, ns, line, 0, {
+                        sign_text = sign_icon,
+                        sign_hl_group = 'DiagnosticSign' .. sign_type,
+                    })
+                end
+            end,
+        })
 
         mason_lspconfig.setup_handlers {
             -- default handler for installed servers
