@@ -50,3 +50,12 @@ end
 
 -- Map the toggle function to <leader>ct
 keymap.set('n', '<leader>ct', toggle_quickfix, { desc = 'toggle quickfix list' })
+
+-- Functino to toggle wrap/unwrap lines
+local function toggle_wrap()
+    vim.wo.wrap = not vim.wo.wrap
+    print('Line Wrap: ' .. (vim.wo.wrap and 'Enabled' or 'Disabled'))
+end
+
+-- Map the toggle function to <leader>w
+keymap.set('n', '<leader>ww', toggle_wrap, { desc = 'toggle wrap lines' })
