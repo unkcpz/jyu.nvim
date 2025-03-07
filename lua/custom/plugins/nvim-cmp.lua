@@ -41,7 +41,15 @@ return {
                 ['<C-f>'] = cmp.mapping.scroll_docs(4),
                 ['<C-Space>'] = cmp.mapping.complete(), -- show completion suggestions
                 ['<C-e>'] = cmp.mapping.abort(), -- close completion window
-                ['<CR>'] = cmp.mapping.confirm { select = false },
+                ['<CR>'] = cmp.mapping.confirm { select = true },
+                ['<C-h>'] = cmp.mapping(function(fallback)
+                    if cmp.visible() then
+                        cmp.select_next_item() -- Select the first item
+                        cmp.confirm { select = true } -- Confirm the selection
+                    else
+                        fallback() -- Fallback if completion is not visible
+                    end
+                end, { 'i', 's' }),
             },
             -- sources for autocompletion
             sources = cmp.config.sources {
