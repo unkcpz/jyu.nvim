@@ -32,6 +32,9 @@ keymap.set('t', '<Esc><Esc>', [[<C-\><C-n>]], { desc = 'Jump out from the termin
 keymap.set('n', '<leader>cn', '<cmd>cnext<CR>', { desc = 'next in quickfix list' })
 keymap.set('n', '<leader>cp', '<cmd>cprevious<CR>', { desc = 'previous in quickfix list' })
 
+-- remap tab as esc
+vim.api.nvim_set_keymap('i', '<Tab>', '<Esc>', { noremap = true, silent = true })
+
 -- Function to toggle the Quickfix list
 local function toggle_quickfix()
     local qf_exists = false
