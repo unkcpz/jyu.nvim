@@ -62,6 +62,21 @@ return {
                     vim.bo.expandtab = true -- Replace tabs with spaces
                 end,
             }),
+            -- Set syntax highlight to lalrpop
+            vim.filetype.add {
+                extension = {
+                    lalrpop = 'lalrpop',
+                },
+            },
+
+            vim.api.nvim_create_autocmd('FileType', {
+                pattern = 'lalrpop',
+                callback = function()
+                    vim.cmd 'set syntax=rust'
+                end,
+            }),
+
+            vim.treesitter.language.register('rust', 'lalrpop'),
         }
     end,
 }
