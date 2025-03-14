@@ -12,7 +12,7 @@ return {
             update_cwd = true,
             respect_buf_cwd = true,
             view = {
-                width = 35,
+                width = 40,
                 relativenumber = true,
             },
             -- change folder arrow icons

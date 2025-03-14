@@ -21,6 +21,33 @@ return {
                         ['<C-q>'] = actions.send_selected_to_qflist + actions.open_qflist,
                     },
                 },
+                layout_strategy = 'horizontal', -- Options: horizontal, vertical, center, dropdown
+                layout_config = {
+                    horizontal = {
+                        prompt_position = 'top', -- Moves prompt to the top
+                        preview_width = 0.45,
+                        results_width = 0.6,
+                    },
+                    vertical = {
+                        mirror = false,
+                    },
+                    center = {
+                        width = 0.5, -- Centers the layout with 50% width
+                    },
+                    dropdown = {
+                        width = 0.5, -- Dropdown menu width
+                        previewer = false, -- No preview window
+                    },
+                },
+                sorting_strategy = 'ascending', -- Show results from top to bottom
+                winblend = 10, -- Transparency (adjust as needed)
+                border = true, -- Enable borders
+                color_devicons = true, -- Color icons
+            },
+            pickers = {
+                find_files = {
+                    theme = 'dropdown',
+                },
             },
         }
 
