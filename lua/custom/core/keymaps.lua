@@ -62,3 +62,6 @@ end
 
 -- Map the toggle function to <leader>w
 keymap.set('n', '<leader>ww', toggle_wrap, { desc = 'toggle wrap lines' })
+
+-- Select and execute lua
+vim.keymap.set("v", "<leader>rl", ":'<,'>lua<CR>", { noremap = true, silent = true })
