@@ -34,10 +34,6 @@ return {
                     center = {
                         width = 0.5, -- Centers the layout with 50% width
                     },
-                    dropdown = {
-                        width = 0.5, -- Dropdown menu width
-                        previewer = false, -- No preview window
-                    },
                 },
                 sorting_strategy = 'ascending', -- Show results from top to bottom
                 winblend = 10, -- Transparency (adjust as needed)
