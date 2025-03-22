@@ -23,7 +23,6 @@ return {
                         return { 'isort', 'black' }
                     end
                 end,
-                -- You can customize some of the format options for the filetype (:help conform.format)
                 rust = { 'rustfmt', lsp_format = 'fallback' },
                 -- Use "yamlfmt" as primary
                 yaml = { 'yamlfmt' },
