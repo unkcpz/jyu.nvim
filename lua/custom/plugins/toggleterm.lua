@@ -5,14 +5,24 @@ return {
     keys = {
         { '<leader>0', '<Cmd>2ToggleTerm<Cr>', desc = 'Terminal #2' },
         {
+            '<leader>Th',
+            function()
+                local count = vim.v.count1
+                local cwd = vim.fn.getcwd()
+                local toggleterm = require 'toggleterm'
+                toggleterm.toggle(count, 15, cwd, 'horizontal')
+            end,
+            desc = 'Open a horizontal terminal on cwd',
+        },
+        {
             '<leader>Tv',
             function()
                 local count = vim.v.count1
                 local cwd = vim.fn.getcwd()
                 local toggleterm = require 'toggleterm'
-                toggleterm.toggle(count, 10, cwd, 'horizontal')
+                toggleterm.toggle(count, 128, cwd, 'vertical')
             end,
-            desc = 'Open a horizontal terminal on cwd',
+            desc = 'Open a vertical terminal on cwd',
         },
         {
             '<leader>Tf',
