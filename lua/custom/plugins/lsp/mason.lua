@@ -2,6 +2,8 @@ return {
     'williamboman/mason.nvim',
     dependencies = {
         'williamboman/mason-lspconfig.nvim',
+        'mfussenegger/nvim-dap',
+        'jay-babu/mason-nvim-dap.nvim',
     },
     config = function()
         -- import mason
@@ -31,6 +33,13 @@ return {
                 'julials',
                 'basedpyright',
             },
+            automatic_installation = true,
+        }
+
+        local mason_dapconfig = require 'mason-nvim-dap'
+
+        mason_dapconfig.setup {
+            ensure_installed = { 'codelldb' },
             automatic_installation = true,
         }
     end,
