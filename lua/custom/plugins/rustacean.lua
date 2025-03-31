@@ -11,7 +11,7 @@ return {
                 },
             },
             on_attach = function(_, bufnr)
-                vim.keymap.set('n', '<leader>dR', function()
+                vim.keymap.set('n', '<leader>rd', function()
                     vim.cmd.RustLsp 'debuggables'
                 end, { desc = 'Rust Debuggables', buffer = bufnr })
                 vim.keymap.set('n', '<leader>rr', function()
