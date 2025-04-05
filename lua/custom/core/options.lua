@@ -48,3 +48,8 @@ opt.colorcolumn = "90"
 
 -- cursor scroll limit
 opt.scrolloff = 8
+
+-- treesitter fold 
+opt.foldmethod = "expr"
+opt.foldexpr = "nvim_treesitter#foldexpr()"
+
