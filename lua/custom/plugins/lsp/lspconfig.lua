@@ -31,12 +31,6 @@ return {
             return orig_util_open_floating_preview(contents, syntax, opts, ...)
         end
 
-        -- import mason_lspconfig plugin
-        local mason_lspconfig = require 'mason-lspconfig'
-
-        -- import cmp-nvim-lsp plugin
-        local cmp_nvim_lsp = require 'cmp_nvim_lsp'
-
         local keymap = vim.keymap -- for conciseness
 
         -- julials
@@ -122,9 +116,6 @@ return {
             end,
         })
 
-        -- used to enable autocompletion (assign to every lsp server config)
-        local capabilities = cmp_nvim_lsp.default_capabilities()
-
         -- Change the Diagnostic symbols in the sign column (gutter)
         -- (not in youtube nvim video)
         local signs = { Error = 'x ', Warn = '! ', Hint = '> ', Info = 'i ' }
@@ -193,30 +184,5 @@ return {
             end,
         })
 
-        mason_lspconfig.setup_handlers {
-            -- default handler for installed servers
-            function(server_name)
-                lspconfig[server_name].setup {
-                    capabilities = capabilities,
-                }
-            end,
-            ['lua_ls'] = function()
-                -- configure lua server (with special settings)
-                lspconfig['lua_ls'].setup {
-                    capabilities = capabilities,
-                    settings = {
-                        Lua = {
-                            -- make the language server recognize "vim" global
-                            diagnostics = {
-                                globals = { 'vim' },
-                            },
-                            completion = {
-                                callSnippet = 'Replace',
-                            },
-                        },
-                    },
-                }
-            end,
-        }
     end,
 }
