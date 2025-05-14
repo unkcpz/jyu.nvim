@@ -9,6 +9,11 @@ return {
                 args = { '--stdin', '--quiet' },
                 stdin = true,
             },
+            clang_format = {
+                command = 'clang-format',
+                args = { '--assume-filename', '$FILENAME', '--style=Google' },
+                stdin = true,
+            },
         }
 
         require('conform').setup {
@@ -28,6 +33,8 @@ return {
                 yaml = { 'yamlfmt' },
                 html = { 'htmlbeautifier' },
                 eml = { 'htmlbeautifier' },
+                cpp = { 'clang_format' },
+                c = { 'clang_format' },
             },
         }
         -- This in order to make html formatter works for .eml

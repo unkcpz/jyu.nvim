@@ -24,6 +24,20 @@ return {
                 args = {},
             },
         }
+        dap.configurations.cpp = {
+            {
+                name = 'Launch C++ binary',
+                type = 'lldb',
+                request = 'launch',
+                program = function()
+                    return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+                end,
+                cwd = '${workspaceFolder}',
+                stopOnEntry = false,
+                args = {},
+            },
+        }
+        dap.configurations.c = dap.configurations.cpp
 
         dapui.setup()
 
