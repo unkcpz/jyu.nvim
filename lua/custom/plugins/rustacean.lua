@@ -79,6 +79,11 @@ return {
                                     ['async-recursion'] = { 'async_recursion' },
                                 },
                             },
+                            inlayHints = {
+                                lifetimeElisionHints = {
+                                    enable = 'always',
+                                },
+                            },
                         },
                     },
                 },
