@@ -55,6 +55,13 @@ return {
             root_dir = lspconfig.util.root_pattern('.git', 'Project.toml'),
         }
 
+        vim.lsp.enable 'nixd'
+        vim.lsp.config('nixd', {
+            cmd = { 'nixd' },
+            filetypes = { 'nix' },
+            root_markers = { 'flake.nix', 'git' },
+        })
+
         vim.api.nvim_create_autocmd('LspAttach', {
             group = vim.api.nvim_create_augroup('UserLspConfig', {}),
             callback = function(ev)
@@ -183,6 +190,5 @@ return {
                 end
             end,
         })
-
     end,
 }

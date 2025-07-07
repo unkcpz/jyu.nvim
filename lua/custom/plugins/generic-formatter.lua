@@ -35,6 +35,7 @@ return {
                 eml = { 'htmlbeautifier' },
                 cpp = { 'clang_format' },
                 c = { 'clang_format' },
+                nix = { 'nixfmt' },
             },
         }
         -- This in order to make html formatter works for .eml
