@@ -52,4 +52,5 @@ opt.scrolloff = 8
 -- treesitter fold 
 opt.foldmethod = "expr"
 opt.foldexpr = "nvim_treesitter#foldexpr()"
+opt.foldlevel = 99
 
