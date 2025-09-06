@@ -12,10 +12,14 @@ return {
         -- configure treesitter
         treesitter.setup { -- enable syntax highlighting
             highlight = {
-                enable = true,
+                enable = true, -- keep TS highlight for most languages
+                disable = { 'markdown' }, -- but not for Markdown
+                additional_vim_regex_highlighting = { 'markdown' }, -- use classic :syntax for md
             },
-            -- enable indentation
-            indent = { enable = true },
+            indent = {
+                enable = true,
+                disable = { 'markdown' }, -- Tree-sitter indent can be weird for md
+            },
             -- enable autotagging (w/ nvim-ts-autotag plugin)
             autotag = {
                 enable = true,

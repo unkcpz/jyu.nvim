@@ -37,6 +37,7 @@ return {
                 'ruff',
                 'julials',
                 'basedpyright',
+                'markdown_oxide',
             },
             automatic_installation = true,
         }
