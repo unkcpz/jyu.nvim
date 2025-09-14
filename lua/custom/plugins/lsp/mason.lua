@@ -32,12 +32,12 @@ return {
             automatic_enable = true,
             ensure_installed = {
                 'html',
-                'htmx',
                 'lua_ls',
                 'ruff',
                 'julials',
                 'basedpyright',
                 'markdown_oxide',
+                'denols',
             },
             automatic_installation = true,
         }

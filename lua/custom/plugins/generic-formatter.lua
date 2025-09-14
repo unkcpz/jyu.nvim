@@ -29,6 +29,7 @@ return {
                     end
                 end,
                 rust = { 'rustfmt', lsp_format = 'fallback' },
+                typescript = { 'deno_fmt' },
                 -- Use "yamlfmt" as primary
                 yaml = { 'yamlfmt' },
                 html = { 'htmlbeautifier' },
