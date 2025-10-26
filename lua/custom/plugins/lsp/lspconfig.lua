@@ -7,8 +7,6 @@ return {
         { 'folke/neodev.nvim', opts = {} },
     },
     config = function()
-        -- import lspconfig plugin
-        local lspconfig = require 'lspconfig'
         vim.cmd [[autocmd! ColorScheme * highlight NormalFloat guibg=#1f2335]]
         vim.cmd [[autocmd! ColorScheme * highlight FloatBorder guifg=white guibg=#1f2335]]
 
@@ -162,63 +160,79 @@ return {
             end,
         })
 
-        -- denols
-        lspconfig.denols.setup {
-            root_dir = lspconfig.util.root_pattern('deno.json', 'deno.jsonc', 'deno.lock', 'import_map.json'),
-            settings = {
-                deno = {
-                    inlayHints = {
-                        parameterNames = { enabled = 'all', suppressWhenArgumentMatchesName = true },
-                        parameterTypes = { enabled = true },
-                        variableTypes = { enabled = true },
-                        propertyDeclarationTypes = { enabled = true },
-                        functionLikeReturnTypes = { enabled = true },
-                        enumMemberValues = { enabled = true },
-                    },
-                },
-            },
-            on_attach = function(client, bufnr)
-                -- enable inlay hints
-                if client.server_capabilities.inlayHintProvider then
-                    vim.lsp.inlay_hint.enable(false, { bufnr = bufnr })
-                end
-
-                -- set indentation options for this buffer
-                vim.bo[bufnr].tabstop = 2
-                vim.bo[bufnr].shiftwidth = 2
-                vim.bo[bufnr].expandtab = true
-            end,
-        }
-
-        -- julials
-        lspconfig.julials.setup {
-            cmd = {
-                'julia',
-                '--startup-file=no',
-                '--history-file=no',
-                '-e',
-                [[
-                  using LanguageServer;
-                  using Pkg;
-                  import StaticLint;
-                  import SymbolServer;
-                  env_path = dirname(Pkg.Types.Context().env.project_file);
-                  server = LanguageServer.LanguageServerInstance(stdin, stdout, env_path, "");
-                  server.runlinter = true;
-                  run(server);
-                ]],
-            },
-            filetypes = { 'julia' },
-            root_dir = lspconfig.util.root_pattern('.git', 'Project.toml'),
-        }
-
-        -- nixls
-        vim.lsp.enable 'nixd'
-        vim.lsp.config('nixd', {
-            cmd = { 'nixd' },
-            filetypes = { 'nix' },
-            root_markers = { 'flake.nix', 'git' },
-        })
+        -- -- import lspconfig plugin
+        -- local lspconfig = vim.lsp.config
+        --
+        -- -- denols
+        -- local util = require 'lspconfig.util'
+        -- lspconfig.denols.setup {
+        --     root_dir = util.root_pattern('deno.json', 'deno.jsonc', 'deno.lock', 'import_map.json'),
+        --     settings = {
+        --         deno = {
+        --             inlayHints = {
+        --                 parameterNames = { enabled = 'all', suppressWhenArgumentMatchesName = true },
+        --                 parameterTypes = { enabled = true },
+        --                 variableTypes = { enabled = true },
+        --                 propertyDeclarationTypes = { enabled = true },
+        --                 functionLikeReturnTypes = { enabled = true },
+        --                 enumMemberValues = { enabled = true },
+        --             },
+        --         },
+        --     },
+        --     on_attach = function(client, bufnr)
+        --         -- enable inlay hints
+        --         if client.server_capabilities.inlayHintProvider then
+        --             vim.lsp.inlay_hint.enable(false, { bufnr = bufnr })
+        --         end
+        --
+        --         -- set indentation options for this buffer
+        --         vim.bo[bufnr].tabstop = 2
+        --         vim.bo[bufnr].shiftwidth = 2
+        --         vim.bo[bufnr].expandtab = true
+        --     end,
+        -- }
+        --
+        -- -- wasm/wat
+        -- lspconfig.wasm_language_tools.setup {
+        --     settings = {
+        --         lint = {
+        --             unused = 'deny',
+        --         },
+        --         format = {
+        --             formatComments = true,
+        --         },
+        --     },
+        -- }
+        --
+        -- -- julials
+        -- lspconfig.julials.setup {
+        --     cmd = {
+        --         'julia',
+        --         '--startup-file=no',
+        --         '--history-file=no',
+        --         '-e',
+        --         [[
+        --           using LanguageServer;
+        --           using Pkg;
+        --           import StaticLint;
+        --           import SymbolServer;
+        --           env_path = dirname(Pkg.Types.Context().env.project_file);
+        --           server = LanguageServer.LanguageServerInstance(stdin, stdout, env_path, "");
+        --           server.runlinter = true;
+        --           run(server);
+        --         ]],
+        --     },
+        --     filetypes = { 'julia' },
+        --     root_dir = lspconfig.util.root_pattern('.git', 'Project.toml'),
+        -- }
+        --
+        -- -- nixls
+        -- vim.lsp.enable 'nixd'
+        -- vim.lsp.config('nixd', {
+        --     cmd = { 'nixd' },
+        --     filetypes = { 'nix' },
+        --     root_markers = { 'flake.nix', 'git' },
+        -- })
 
         ---
     end,
